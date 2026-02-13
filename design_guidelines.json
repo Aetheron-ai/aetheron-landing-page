@@ -1,0 +1,126 @@
+{
+  "brand_identity": {
+    "name": "Aetheron AI Technologies Pvt Ltd",
+    "tone": "Elite, Industrial, Precise, Dominant, Deep-Tech",
+    "vibe": "Lockheed Martin × Tesla × OpenAI × Cyberpunk Minimalism",
+    "description": "An advanced AI and machine intelligence company building the infrastructure of the future."
+  },
+  "typography": {
+    "headings": {
+      "family": "Manrope",
+      "weights": ["300", "400", "600"],
+      "usage": "Use for all section titles and hero text. Tracking tight (-0.02em to -0.05em).",
+      "import_link": "https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&display=swap"
+    },
+    "body": {
+      "family": "Inter",
+      "weights": ["200", "300", "400"],
+      "usage": "Use for paragraphs and descriptions. Tracking normal or wide for small text.",
+      "import_link": "https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap"
+    },
+    "mono": {
+      "family": "JetBrains Mono",
+      "weights": ["400"],
+      "usage": "Use for data points, coordinates, and technical specs.",
+      "import_link": "https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+    }
+  },
+  "colors": {
+    "background": "#000000",
+    "surface": "#111111",
+    "surface_highlight": "#1A1A1A",
+    "primary": "#E0E0E0",
+    "secondary": "#757575",
+    "accent": "linear-gradient(135deg, #E0E0E0 0%, #757575 100%)",
+    "border": "rgba(255, 255, 255, 0.1)",
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1A1",
+      "muted": "#525252"
+    }
+  },
+  "visual_enhancers": {
+    "cursor": "Custom 'Ring' cursor. Silver outline (1px), transparent center. Expands and snaps on hover.",
+    "glitch_effect": "On text reveal: slight RGB shift or opacity flicker.",
+    "tracing_beam": "Moving gradient border on cards.",
+    "glassmorphism": "Backdrop blur (12px) + 1px white/10 border. No shadows.",
+    "noise": "Subtle noise overlay (opacity 0.03) on backgrounds to prevent banding.",
+    "grid": "Fine 1px grid lines (opacity 0.05) in background."
+  },
+  "layout_strategies": {
+    "hero": {
+      "type": "Immersive 3D",
+      "structure": "Full screen (h-screen). Text overlay: Bottom-Left or Center-Left. Background: Spline 3D Scene.",
+      "typography": "Heading: text-6xl md:text-8xl font-light tracking-tighter."
+    },
+    "project_showcase": {
+      "type": "Bento / Tetris Grid",
+      "structure": "grid-cols-1 md:grid-cols-8 gap-6. Mix of video previews, static imagery, and data cards.",
+      "card_style": "Surface #111111. Hover: Border glows white."
+    },
+    "about": {
+      "type": "Split Layout",
+      "structure": "50% Text (Sticky), 50% Image/Visual (Scroll).",
+      "visual": "Abstract tech imagery or wireframe renders."
+    },
+    "features": {
+      "type": "Minimal Grid",
+      "structure": "grid-cols-2 md:grid-cols-3. Large icons (thin stroke), minimal text.",
+      "icons": "Lucide React (Globe, Cpu, Zap, Network, Shield, Brain)."
+    }
+  },
+  "components": [
+    {
+      "name": "SplineBackground",
+      "path": "src/components/custom/SplineBackground.js",
+      "library": "@splinetool/react-spline",
+      "props": {
+        "scene": "https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode",
+        "className": "absolute inset-0 z-0 w-full h-full"
+      },
+      "instructions": "Ensure it is lazy loaded. Use a placeholder div while loading."
+    },
+    {
+      "name": "CustomCursor",
+      "path": "src/components/custom/CustomCursor.js",
+      "library": "framer-motion",
+      "instructions": "Global custom cursor. Hide default cursor. Circle shape. Mix-blend-mode: difference (optional)."
+    },
+    {
+      "name": "LoadingScreen",
+      "path": "src/components/custom/LoadingScreen.js",
+      "instructions": "Black background. Progress bar thin line (1px). Count up percentage (JetBrains Mono). Glitch effect on logo."
+    }
+  ],
+  "image_assets": {
+    "hero_bg": "Spline 3D (Code)",
+    "about_visual": "https://images.unsplash.com/photo-1692030178613-8742cdf4a1fd?crop=entropy&cs=srgb&fm=jpg&q=85 (Camera Lens/Tech)",
+    "project_1": "https://images.unsplash.com/photo-1485740112426-0c2549fa8c86?crop=entropy&cs=srgb&fm=jpg&q=85 (Conveyor/Industrial)",
+    "project_2": "https://images.unsplash.com/photo-1760978631939-32968f2e1813?crop=entropy&cs=srgb&fm=jpg&q=85 (Abstract Dots/Data)",
+    "project_3": "https://images.unsplash.com/photo-1648104063861-b30c444facf5?crop=entropy&cs=srgb&fm=jpg&q=85 (Metallic Detail)",
+    "feature_icons": "Use Lucide-React icons. No images needed."
+  },
+  "libraries": {
+    "animation": ["framer-motion", "gsap (optional for complex scrolls)", "@studio-freight/lenis (MANDATORY for smooth scroll)"],
+    "3d": ["@splinetool/react-spline"],
+    "icons": ["lucide-react"],
+    "styling": ["clsx", "tailwind-merge"]
+  },
+  "instructions_to_main_agent": [
+    "Install dependencies: npm install framer-motion @splinetool/react-spline @studio-freight/lenis lucide-react clsx tailwind-merge",
+    "Configure Tailwind: Add 'Manrope', 'Inter', 'JetBrains Mono' to font families. Add colors (surface, accent).",
+    "Global CSS: Set body bg-black, text-white. Add .no-cursor class to body when custom cursor is active.",
+    "Implement Lenis smooth scrolling in App.js or main layout.",
+    "Create the 'LoadingScreen' component first. It should mount, play for 2-3s, then unmount revealing the Hero.",
+    "Use the provided Unsplash URLs for the project showcase cards.",
+    "Ensure the Spline scene is behind the Hero text (z-0) and text is z-10.",
+    "For the 'Tracing Beam' effect on cards, use a pseudo-element with a conic-gradient or framer-motion moving div."
+  ],
+  "universal_guidelines": {
+    "design_philosophy": "Fusion over Imitation. Emotion First. Content is King.",
+    "anti_patterns": ["Purple/Teal CTAs", "Inter everywhere (use Manrope for heads)", "Center-Everything (use Asymmetry)", "Gradient Overload"],
+    "spacing": "Generous. Use p-8, p-12, p-24.",
+    "accessibility": "Ensure contrast > 4.5:1. Use aria-labels.",
+    "dark_mode": "Forced Dark Mode for this specific brand."
+  }
+}
