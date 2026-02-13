@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ReactLenis } from 'lenis/react';
 import '@/App.css';
 
 // Components
@@ -36,7 +35,7 @@ function App() {
   };
 
   return (
-    <div className="App bg-black min-h-screen" data-testid="app-container">
+    <div className="App bg-black min-h-screen relative" data-testid="app-container">
       {/* Noise overlay - always present */}
       <div className="noise-overlay" />
 
@@ -46,18 +45,16 @@ function App() {
       {/* Loading screen */}
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
 
-      {/* Main content with smooth scrolling */}
+      {/* Main content */}
       {showContent && (
-        <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
-          <main>
-            <HeroSection />
-            <AboutSection />
-            <ProjectShowcase />
-            <FeaturesSection />
-            <ImmersiveSection />
-            <Footer />
-          </main>
-        </ReactLenis>
+        <main className="relative">
+          <HeroSection />
+          <AboutSection />
+          <ProjectShowcase />
+          <FeaturesSection />
+          <ImmersiveSection />
+          <Footer />
+        </main>
       )}
     </div>
   );
