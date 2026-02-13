@@ -1,52 +1,64 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { ReactLenis } from 'lenis/react';
+import '@/App.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+// Components
+import LoadingScreen from './components/custom/LoadingScreen';
+import CustomCursor from './components/custom/CustomCursor';
+import HeroSection from './components/custom/HeroSection';
+import AboutSection from './components/custom/AboutSection';
+import ProjectShowcase from './components/custom/ProjectShowcase';
+import FeaturesSection from './components/custom/FeaturesSection';
+import ImmersiveSection from './components/custom/ImmersiveSection';
+import Footer from './components/custom/Footer';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Preload critical resources
+    const preloadImages = [
+      'https://images.unsplash.com/photo-1692030178613-8742cdf4a1fd?crop=entropy&cs=srgb&fm=jpg&q=85&w=800',
+      'https://images.unsplash.com/photo-1485740112426-0c2549fa8c86?crop=entropy&cs=srgb&fm=jpg&q=85&w=800'
+    ];
+
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    // Small delay before showing content for smooth transition
+    setTimeout(() => setShowContent(true), 100);
+  };
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="App bg-black min-h-screen" data-testid="app-container">
+      {/* Noise overlay - always present */}
+      <div className="noise-overlay" />
+
+      {/* Custom cursor */}
+      <CustomCursor />
+
+      {/* Loading screen */}
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+
+      {/* Main content with smooth scrolling */}
+      {showContent && (
+        <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
+          <main>
+            <HeroSection />
+            <AboutSection />
+            <ProjectShowcase />
+            <FeaturesSection />
+            <ImmersiveSection />
+            <Footer />
+          </main>
+        </ReactLenis>
+      )}
     </div>
   );
 }
