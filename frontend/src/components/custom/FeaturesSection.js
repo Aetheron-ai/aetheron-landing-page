@@ -42,7 +42,7 @@ const FeatureCard = ({ feature, index, isInView }) => {
     <motion.div
       className="group relative bg-surface border border-transparent hover:border-border-subtle rounded-sm p-6 md:p-8 transition-all duration-300"
       initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
       transition={{ delay: 0.1 * index, duration: 0.5 }}
       whileHover={{ 
         y: -5,
@@ -86,7 +86,7 @@ const FeatureCard = ({ feature, index, isInView }) => {
 
 const FeaturesSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
     <section 
@@ -103,7 +103,7 @@ const FeaturesSection = () => {
         <motion.div
           className="text-center mb-16 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
           transition={{ duration: 0.6 }}
         >
           <span className="font-mono text-xs text-text-muted tracking-[0.3em] block mb-6">

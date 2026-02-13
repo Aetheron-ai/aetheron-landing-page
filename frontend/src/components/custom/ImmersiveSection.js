@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 const ImmersiveSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -11,7 +11,6 @@ const ImmersiveSection = () => {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
 
   const text = "Built for Industrial Evolution.";
@@ -70,14 +69,11 @@ const ImmersiveSection = () => {
       {/* Content */}
       <motion.div
         className="relative z-10 text-center px-6"
-        style={{ opacity }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isInView ? 1 : 0 }}
+        transition={{ duration: 1 }}
       >
-        <motion.h2
-          className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[-0.03em] leading-tight"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1 }}
-        >
+        <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[-0.03em] leading-tight">
           {text.split(' ').map((word, wordIndex) => (
             <span key={wordIndex} className="inline-block mr-[0.3em]">
               {word.split('').map((char, charIndex) => (
@@ -85,7 +81,7 @@ const ImmersiveSection = () => {
                   key={charIndex}
                   className={`inline-block ${wordIndex === 2 || wordIndex === 3 ? 'text-metallic' : 'text-white'}`}
                   initial={{ opacity: 0, y: 50 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
                   transition={{
                     delay: 0.05 * (wordIndex * 5 + charIndex),
                     duration: 0.5,
@@ -97,13 +93,13 @@ const ImmersiveSection = () => {
               ))}
             </span>
           ))}
-        </motion.h2>
+        </h2>
 
         {/* Subtitle */}
         <motion.p
           className="font-mono text-xs md:text-sm text-text-muted tracking-[0.2em] mt-8"
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
           transition={{ delay: 1.5, duration: 0.6 }}
         >
           POWERING THE FUTURE OF MANUFACTURING
@@ -113,7 +109,7 @@ const ImmersiveSection = () => {
         <motion.div
           className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto mt-8"
           initial={{ scaleX: 0 }}
-          animate={isInView ? { scaleX: 1 } : {}}
+          animate={{ scaleX: isInView ? 1 : 0 }}
           transition={{ delay: 1.8, duration: 0.8 }}
         />
       </motion.div>

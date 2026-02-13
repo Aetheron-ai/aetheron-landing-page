@@ -37,7 +37,7 @@ const GlassPanel = ({ icon: Icon, label, value, suffix, delay, inView }) => (
   <motion.div
     className="bg-black/60 backdrop-blur-xl border border-border-subtle rounded-sm p-4 md:p-6"
     initial={{ opacity: 0, y: 20 }}
-    animate={inView ? { opacity: 1, y: 0 } : {}}
+    animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
     transition={{ delay, duration: 0.6 }}
   >
     <div className="flex items-center gap-3 mb-3">
@@ -58,7 +58,7 @@ const GlassPanel = ({ icon: Icon, label, value, suffix, delay, inView }) => (
 
 const ProjectShowcase = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
     <section 
@@ -79,7 +79,7 @@ const ProjectShowcase = () => {
         <motion.div
           className="mb-16 md:mb-24"
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={{ opacity: isInView ? 1 : 0 }}
           transition={{ duration: 0.6 }}
         >
           <span className="font-mono text-xs text-text-muted tracking-[0.3em] block mb-6">
@@ -90,7 +90,7 @@ const ProjectShowcase = () => {
           <motion.h2
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[-0.04em] text-metallic leading-none"
             initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
             AETHERBUILT
@@ -99,7 +99,7 @@ const ProjectShowcase = () => {
           <motion.p
             className="font-heading text-xl md:text-2xl text-text-secondary mt-4 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             Industrial Machine Intelligence Platform
@@ -113,7 +113,7 @@ const ProjectShowcase = () => {
             <motion.p
               className="font-body text-base md:text-lg text-text-secondary leading-relaxed mb-8"
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ delay: 0.5, duration: 0.6 }}
               data-testid="project-description"
             >
@@ -125,7 +125,7 @@ const ProjectShowcase = () => {
             <motion.ul
               className="space-y-4 mb-10"
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ delay: 0.7, duration: 0.6 }}
             >
               {[
@@ -150,7 +150,7 @@ const ProjectShowcase = () => {
               }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ delay: 0.9, duration: 0.6 }}
               data-cursor="VIEW PROJECT"
               data-testid="launch-demo-btn"
@@ -165,7 +165,7 @@ const ProjectShowcase = () => {
             <motion.div
               className="absolute inset-0 -z-10 opacity-30"
               initial={{ opacity: 0, scale: 1.1 }}
-              animate={isInView ? { opacity: 0.3, scale: 1 } : {}}
+              animate={{ opacity: isInView ? 0.3 : 0, scale: isInView ? 1 : 1.1 }}
               transition={{ delay: 0.3, duration: 1 }}
             >
               <img
@@ -216,7 +216,7 @@ const ProjectShowcase = () => {
             <motion.div
               className="mt-4 bg-black/60 backdrop-blur-xl border border-border-subtle rounded-sm p-4"
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ delay: 1, duration: 0.6 }}
             >
               <div className="flex items-center justify-between">

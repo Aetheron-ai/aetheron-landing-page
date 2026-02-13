@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 
 const AboutSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const textLines = [
     "We don't build apps.",
@@ -29,7 +29,7 @@ const AboutSection = () => {
             {/* Section Label */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -20 }}
               transition={{ duration: 0.6 }}
               className="mb-8"
             >
@@ -47,7 +47,7 @@ const AboutSection = () => {
                     index === 1 ? 'text-metallic' : 'text-white'
                   }`}
                   initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
                   transition={{ delay: 0.2 + index * 0.15, duration: 0.6 }}
                 >
                   {line}
@@ -59,7 +59,7 @@ const AboutSection = () => {
             <motion.p
               className="font-body text-base md:text-lg text-text-secondary leading-relaxed max-w-lg"
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
               {description}
@@ -69,7 +69,7 @@ const AboutSection = () => {
             <motion.div
               className="mt-12 grid grid-cols-3 gap-8"
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ delay: 0.8, duration: 0.6 }}
             >
               {[
@@ -89,7 +89,7 @@ const AboutSection = () => {
           <motion.div
             className="order-1 lg:order-2 relative"
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.95 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <div className="relative aspect-square max-w-md mx-auto lg:max-w-none">
@@ -108,7 +108,7 @@ const AboutSection = () => {
               <motion.div
                 className="absolute -bottom-6 -left-6 bg-black/90 backdrop-blur-xl border border-border-subtle p-6 rounded-sm"
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
                 transition={{ delay: 1, duration: 0.6 }}
               >
                 <p className="font-mono text-xs text-text-muted mb-2">ESTABLISHED</p>
