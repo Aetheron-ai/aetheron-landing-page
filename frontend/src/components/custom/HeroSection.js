@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import Spline from '@splinetool/react-spline';
 import { ChevronDown } from 'lucide-react';
 
 const HeroSection = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
   const headline1 = "Engineering Intelligent Machines.";
   const headline2 = "Redefining Industrial Reality.";
 
@@ -22,26 +19,22 @@ const HeroSection = () => {
     })
   };
 
-  const handleSplineLoad = () => {
-    setIsLoaded(true);
-  };
-
   return (
     <section 
       className="relative h-screen w-full overflow-hidden bg-black"
       data-testid="hero-section"
     >
-      {/* Spline Background */}
+      {/* Spline Background via iframe */}
       <div className="absolute inset-0 z-0">
-        <Spline
-          scene="https://prod.spline.design/IsZ0QpMcIw1kJS7qwtIv3M0S/scene.splinecode"
-          onLoad={handleSplineLoad}
-          style={{ width: '100%', height: '100%' }}
+        <iframe
+          src="https://my.spline.design/boxeshover-IsZ0QpMcIw1kJS7qwtIv3M0S/"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+          title="Spline 3D Background"
+          className="w-full h-full"
+          style={{ border: 'none' }}
         />
-        {/* Fallback gradient while loading */}
-        {!isLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-surface to-black" />
-        )}
       </div>
 
       {/* Dark overlay for text readability */}
