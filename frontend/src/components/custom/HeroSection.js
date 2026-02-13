@@ -38,7 +38,7 @@ const HeroSection = () => {
       </div>
 
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 z-[1] bg-black/40" />
+      <div className="absolute inset-0 z-[1] bg-black/60" />
 
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 z-[2] grid-pattern opacity-30" />
