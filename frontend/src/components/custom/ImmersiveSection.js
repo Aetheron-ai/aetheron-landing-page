@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const ImmersiveSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -50,17 +49,17 @@ const ImmersiveSection = () => {
             key={i}
             className="absolute w-1 h-1 bg-white/20 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${10 + (i * 4)}%`,
+              top: `${10 + (i * 3) % 80}%`,
             }}
             animate={{
               y: [0, -30, 0],
               opacity: [0.2, 0.5, 0.2]
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 3 + (i % 3),
               repeat: Infinity,
-              delay: Math.random() * 2
+              delay: i * 0.2
             }}
           />
         ))}
@@ -70,28 +69,28 @@ const ImmersiveSection = () => {
       <motion.div
         className="relative z-10 text-center px-6"
         initial={{ opacity: 0 }}
-        animate={{ opacity: isInView ? 1 : 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 1 }}
       >
         <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[-0.03em] leading-tight">
           {text.split(' ').map((word, wordIndex) => (
-            <span key={wordIndex} className="inline-block mr-[0.3em]">
-              {word.split('').map((char, charIndex) => (
-                <motion.span
-                  key={charIndex}
-                  className={`inline-block ${wordIndex === 2 || wordIndex === 3 ? 'text-metallic' : 'text-white'}`}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
-                  transition={{
-                    delay: 0.05 * (wordIndex * 5 + charIndex),
-                    duration: 0.5,
-                    ease: [0.25, 0.1, 0.25, 1]
-                  }}
-                >
-                  {char}
-                </motion.span>
-              ))}
-            </span>
+            <motion.span 
+              key={wordIndex} 
+              className="inline-block mr-[0.3em]"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                delay: 0.1 * wordIndex,
+                duration: 0.5,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+            >
+              <span className={wordIndex === 2 || wordIndex === 3 ? 'text-metallic' : 'text-white'}>
+                {word}
+              </span>
+            </motion.span>
           ))}
         </h2>
 
@@ -99,8 +98,9 @@ const ImmersiveSection = () => {
         <motion.p
           className="font-mono text-xs md:text-sm text-text-muted tracking-[0.2em] mt-8"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8, duration: 0.6 }}
         >
           POWERING THE FUTURE OF MANUFACTURING
         </motion.p>
@@ -109,8 +109,9 @@ const ImmersiveSection = () => {
         <motion.div
           className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto mt-8"
           initial={{ scaleX: 0 }}
-          animate={{ scaleX: isInView ? 1 : 0 }}
-          transition={{ delay: 1.8, duration: 0.8 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1, duration: 0.8 }}
         />
       </motion.div>
 

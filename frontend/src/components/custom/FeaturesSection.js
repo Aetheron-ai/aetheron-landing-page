@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Monitor, Brain, Layers, LayoutDashboard, Gauge, Shield } from 'lucide-react';
 
 const features = [
@@ -35,14 +35,15 @@ const features = [
   }
 ];
 
-const FeatureCard = ({ feature, index, isInView }) => {
+const FeatureCard = ({ feature, index }) => {
   const Icon = feature.icon;
   
   return (
     <motion.div
       className="group relative bg-surface border border-transparent hover:border-border-subtle rounded-sm p-6 md:p-8 transition-all duration-300"
       initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{ delay: 0.1 * index, duration: 0.5 }}
       whileHover={{ 
         y: -5,
@@ -85,13 +86,9 @@ const FeatureCard = ({ feature, index, isInView }) => {
 };
 
 const FeaturesSection = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
   return (
     <section 
       id="features"
-      ref={sectionRef}
       className="relative bg-black py-24 md:py-32 overflow-hidden"
       data-testid="features-section"
     >
@@ -103,7 +100,8 @@ const FeaturesSection = () => {
         <motion.div
           className="text-center mb-16 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
           <span className="font-mono text-xs text-text-muted tracking-[0.3em] block mb-6">
@@ -122,7 +120,6 @@ const FeaturesSection = () => {
               key={index} 
               feature={feature} 
               index={index}
-              isInView={isInView}
             />
           ))}
         </div>
