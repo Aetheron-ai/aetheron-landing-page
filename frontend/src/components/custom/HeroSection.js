@@ -24,21 +24,6 @@ const HeroSection = () => {
       className="relative h-screen w-full overflow-hidden bg-black"
       data-testid="hero-section"
     >
-      {/* Spline Background via iframe */}
-      <div className="absolute inset-0 z-0">
-        <iframe
-          src="https://my.spline.design/boxeshover-IsZ0QpMcIw1kJS7qwtIv3M0S/"
-          frameBorder="0"
-          width="100%"
-          height="100%"
-          title="Spline 3D Background"
-          className="w-full h-full"
-          style={{ border: 'none' }}
-        />
-      </div>
-
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 z-[1] bg-black/70" />
 
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 z-[2] grid-pattern opacity-30" />

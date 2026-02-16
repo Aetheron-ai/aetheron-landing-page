@@ -49,8 +49,8 @@
   },
   "layout_strategies": {
     "hero": {
-      "type": "Immersive 3D",
-      "structure": "Full screen (h-screen). Text overlay: Bottom-Left or Center-Left. Background: Spline 3D Scene.",
+      "type": "Immersive Full Screen",
+      "structure": "Full screen (h-screen). Text overlay: Bottom-Left or Center-Left. Background: Gradient or custom animation.",
       "typography": "Heading: text-6xl md:text-8xl font-light tracking-tighter."
     },
     "project_showcase": {
@@ -71,16 +71,6 @@
   },
   "components": [
     {
-      "name": "SplineBackground",
-      "path": "src/components/custom/SplineBackground.js",
-      "library": "@splinetool/react-spline",
-      "props": {
-        "scene": "https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode",
-        "className": "absolute inset-0 z-0 w-full h-full"
-      },
-      "instructions": "Ensure it is lazy loaded. Use a placeholder div while loading."
-    },
-    {
       "name": "CustomCursor",
       "path": "src/components/custom/CustomCursor.js",
       "library": "framer-motion",
@@ -93,7 +83,7 @@
     }
   ],
   "image_assets": {
-    "hero_bg": "Spline 3D (Code)",
+    "hero_bg": "Custom gradient or animated background",
     "about_visual": "https://images.unsplash.com/photo-1692030178613-8742cdf4a1fd?crop=entropy&cs=srgb&fm=jpg&q=85 (Camera Lens/Tech)",
     "project_1": "https://images.unsplash.com/photo-1485740112426-0c2549fa8c86?crop=entropy&cs=srgb&fm=jpg&q=85 (Conveyor/Industrial)",
     "project_2": "https://images.unsplash.com/photo-1760978631939-32968f2e1813?crop=entropy&cs=srgb&fm=jpg&q=85 (Abstract Dots/Data)",
@@ -102,18 +92,16 @@
   },
   "libraries": {
     "animation": ["framer-motion", "gsap (optional for complex scrolls)", "@studio-freight/lenis (MANDATORY for smooth scroll)"],
-    "3d": ["@splinetool/react-spline"],
     "icons": ["lucide-react"],
     "styling": ["clsx", "tailwind-merge"]
   },
   "instructions_to_main_agent": [
-    "Install dependencies: npm install framer-motion @splinetool/react-spline @studio-freight/lenis lucide-react clsx tailwind-merge",
+    "Install dependencies: npm install framer-motion @studio-freight/lenis lucide-react clsx tailwind-merge",
     "Configure Tailwind: Add 'Manrope', 'Inter', 'JetBrains Mono' to font families. Add colors (surface, accent).",
     "Global CSS: Set body bg-black, text-white. Add .no-cursor class to body when custom cursor is active.",
     "Implement Lenis smooth scrolling in App.js or main layout.",
     "Create the 'LoadingScreen' component first. It should mount, play for 2-3s, then unmount revealing the Hero.",
     "Use the provided Unsplash URLs for the project showcase cards.",
-    "Ensure the Spline scene is behind the Hero text (z-0) and text is z-10.",
     "For the 'Tracing Beam' effect on cards, use a pseudo-element with a conic-gradient or framer-motion moving div."
   ],
   "universal_guidelines": {
