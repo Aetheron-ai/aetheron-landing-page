@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const AboutSection = () => {
+const AboutSection = ({ id }) => {
   const textLines = [
     "We don't build apps.",
     "We build intelligent infrastructure."
@@ -11,7 +11,7 @@ const AboutSection = () => {
 
   return (
     <section 
-      id="about"
+      id={id}
       className="relative min-h-screen bg-surface py-24 md:py-32 overflow-hidden"
       data-testid="about-section"
     >
@@ -104,18 +104,6 @@ const AboutSection = () => {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
               </div>
-
-              {/* Floating card */}
-              <motion.div
-                className="absolute -bottom-6 -left-6 bg-black/90 backdrop-blur-xl border border-border-subtle p-6 rounded-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1, duration: 0.6 }}
-              >
-                <p className="font-mono text-xs text-text-muted mb-2">ESTABLISHED</p>
-                <p className="font-heading text-2xl text-white">2025</p>
-              </motion.div>
 
               {/* Corner decoration */}
               <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-border-subtle opacity-40" />

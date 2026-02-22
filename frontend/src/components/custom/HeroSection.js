@@ -2,118 +2,68 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
-const HeroSection = () => {
-  const headline1 = "Engineering Intelligent Machines.";
-  const headline2 = "Redefining Industrial Reality.";
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.03,
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    })
-  };
-
+const HeroSection = ({ id }) => {
   return (
     <section 
+      id={id}
       className="relative h-screen w-full overflow-hidden bg-black"
       data-testid="hero-section"
     >
+      {/* Spline Background */}
+      <div className="absolute inset-0 z-0">
+        <iframe
+          src="https://my.spline.design/lines-yZMTa4QiXI9XTmOnRl4DyrAl/"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+          title="Spline 3D Background"
+          className="w-full h-full"
+          style={{ border: 'none' }}
+        />
+      </div>
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 z-[2] grid-pattern opacity-30" />
+      {/* Subtle overlay */}
+      <div className="absolute inset-0 z-[1] bg-black/30" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-12 lg:px-24">
-        <div className="max-w-5xl">
-          {/* Welcome Text */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center px-6">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
           <motion.p
-            className="font-mono text-xs md:text-sm text-text-secondary tracking-[0.3em] mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            data-testid="hero-welcome"
+            className="font-mono text-xs md:text-sm text-white/50 tracking-[0.5em] mb-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
           >
-            WELCOME TO AETHERON AI TECHNOLOGIES PVT LTD
+            WELCOME TO
           </motion.p>
 
-          {/* Main Headlines */}
-          <div className="mb-8">
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[-0.03em] leading-[0.95] text-white">
-              {/* First line */}
-              <span className="block mb-2">
-                {headline1.split('').map((char, i) => (
-                  <motion.span
-                    key={`h1-${i}`}
-                    custom={i}
-                    initial="hidden"
-                    animate="visible"
-                    variants={letterVariants}
-                    className={`inline-block ${char === ' ' ? 'w-[0.3em]' : ''}`}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
-              </span>
-              
-              {/* Second line */}
-              <span className="block text-metallic">
-                {headline2.split('').map((char, i) => (
-                  <motion.span
-                    key={`h2-${i}`}
-                    custom={i + headline1.length}
-                    initial="hidden"
-                    animate="visible"
-                    variants={letterVariants}
-                    className={`inline-block ${char === ' ' ? 'w-[0.3em]' : ''}`}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
-              </span>
-            </h1>
-          </div>
-
-          {/* Subtext */}
-          <motion.p
-            className="font-body text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-            data-testid="hero-subtext"
+          <motion.h1
+            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-[-0.04em] text-white"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 1 }}
           >
-            Aetheron AI Technologies builds intelligent machine ecosystems powered by 
-            AI-driven automation and industrial precision.
-          </motion.p>
+            <span className="text-metallic">AETHERON</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl mt-2 text-white/70 tracking-[0.1em] font-light">
+              AI TECHNOLOGIES
+            </span>
+          </motion.h1>
 
-          {/* CTA Button */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.6 }}
+            className="mt-8 flex items-center justify-center gap-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
           >
-            <motion.button
-              className="btn-metallic px-8 py-4 rounded-sm font-body text-sm tracking-wider text-white/90 transition-all duration-300 hover:scale-105"
-              whileHover={{ 
-                boxShadow: '0 0 30px rgba(255, 255, 255, 0.1)',
-              }}
-              whileTap={{ scale: 0.98 }}
-              data-cursor="EXPLORE"
-              data-testid="hero-cta"
-              onClick={() => {
-                const projectSection = document.getElementById('project');
-                projectSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Explore AetherBuilt
-            </motion.button>
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="font-mono text-[10px] text-white/40 tracking-widest">SYSTEMS ONLINE</span>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
@@ -121,21 +71,16 @@ const HeroSection = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 0.6 }}
+        transition={{ delay: 2, duration: 0.6 }}
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center"
         >
-          <span className="font-mono text-[10px] text-text-muted tracking-widest mb-2">SCROLL</span>
-          <ChevronDown className="w-4 h-4 text-text-muted" />
+          <ChevronDown className="w-5 h-5 text-white/30" />
         </motion.div>
       </motion.div>
-
-      {/* Corner accents */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-border-subtle opacity-20 z-10" />
-      <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-border-subtle opacity-20 z-10" />
     </section>
   );
 };

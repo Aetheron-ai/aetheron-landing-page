@@ -4,16 +4,19 @@ import '@/App.css';
 // Components
 import LoadingScreen from './components/custom/LoadingScreen';
 import CustomCursor from './components/custom/CustomCursor';
+import Navbar from './components/custom/Navbar';
 import HeroSection from './components/custom/HeroSection';
 import AboutSection from './components/custom/AboutSection';
 import ProjectShowcase from './components/custom/ProjectShowcase';
 import FeaturesSection from './components/custom/FeaturesSection';
 import ImmersiveSection from './components/custom/ImmersiveSection';
+import TeamPage from './components/custom/TeamPage';
 import Footer from './components/custom/Footer';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
 
   useEffect(() => {
     // Preload critical resources
@@ -48,11 +51,13 @@ function App() {
       {/* Main content */}
       {showContent && (
         <main className="relative">
-          <HeroSection />
-          <AboutSection />
+          <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <HeroSection id="home" />
+          <AboutSection id="about" />
           <ProjectShowcase />
           <FeaturesSection />
           <ImmersiveSection />
+          <TeamPage id="team" />
           <Footer />
         </main>
       )}

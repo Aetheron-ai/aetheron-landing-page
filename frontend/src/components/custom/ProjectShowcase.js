@@ -99,6 +99,19 @@ const ProjectShowcase = () => {
             AETHERBUILT
           </motion.h2>
           
+          {/* Launching Soon Label */}
+          <motion.div
+            className="mt-4 mb-2"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <span className="inline-block bg-metallic/20 border border-metallic/30 text-metallic font-mono text-xs px-3 py-1 rounded-sm tracking-wider">
+              LAUNCHING SOON
+            </span>
+          </motion.div>
+          
           <motion.p
             className="font-heading text-xl md:text-2xl text-text-secondary mt-4 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
