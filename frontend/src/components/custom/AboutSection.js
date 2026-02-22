@@ -114,7 +114,7 @@ const AboutSection = () => {
                 transition={{ delay: 1, duration: 0.6 }}
               >
                 <p className="font-mono text-xs text-text-muted mb-2">ESTABLISHED</p>
-                <p className="font-heading text-2xl text-white">2024</p>
+                <p className="font-heading text-2xl text-white">2025</p>
               </motion.div>
 
               {/* Corner decoration */}
