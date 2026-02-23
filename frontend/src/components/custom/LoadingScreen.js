@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const loadingMessages = [
+  'INITIALIZING INTELLIGENCE...',
+  'CALIBRATING SYSTEMS...',
+  'BOOTING AETHERON CORE...'
+];
+
 const LoadingScreen = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState('INITIALIZING INTELLIGENCE...');
   const [isExiting, setIsExiting] = useState(false);
-
-  const loadingMessages = [
-    'INITIALIZING INTELLIGENCE...',
-    'CALIBRATING SYSTEMS...',
-    'BOOTING AETHERON CORE...'
-  ];
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
