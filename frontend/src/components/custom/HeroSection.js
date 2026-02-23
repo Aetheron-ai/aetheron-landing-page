@@ -54,15 +54,6 @@ const HeroSection = ({ id }) => {
             </span>
           </motion.h1>
 
-          <motion.div
-            className="mt-8 flex items-center justify-center gap-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-          >
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="font-mono text-[10px] text-white/40 tracking-widest">SYSTEMS ONLINE</span>
-          </motion.div>
         </motion.div>
       </div>
 

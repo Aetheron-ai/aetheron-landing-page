@@ -64,25 +64,6 @@ const AboutSection = ({ id }) => {
               {description}
             </motion.p>
 
-            {/* Stats */}
-            <motion.div
-              className="mt-12 grid grid-cols-3 gap-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-            >
-              {[
-                { value: '99.9%', label: 'Uptime' },
-                { value: '50ms', label: 'Latency' },
-                { value: '24/7', label: 'Monitoring' }
-              ].map((stat, index) => (
-                <div key={index} className="text-center lg:text-left">
-                  <p className="font-mono text-2xl md:text-3xl text-white mb-1">{stat.value}</p>
-                  <p className="font-mono text-xs text-text-muted tracking-wider">{stat.label}</p>
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           {/* Visual Content */}
