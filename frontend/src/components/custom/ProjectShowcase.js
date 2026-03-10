@@ -90,11 +90,12 @@ const ProjectShowcase = () => {
           
           {/* Massive Typography */}
           <motion.h2
-            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[-0.04em] text-metallic leading-none"
+            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[-0.04em] text-metallic leading-none cursor-pointer hover:text-white transition-colors duration-300"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ delay: 0.2, duration: 0.8 }}
+            onClick={() => window.open('https://aether-built-landing-page.vercel.app/', '_blank')}
           >
             AETHERBUILT
           </motion.h2>
