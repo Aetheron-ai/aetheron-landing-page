@@ -175,6 +175,7 @@ const ProjectShowcase = () => {
               transition={{ delay: 0.9, duration: 0.6 }}
               data-cursor="VIEW PROJECT"
               data-testid="launch-demo-btn"
+              onClick={() => window.open('https://aether-built-landing-page.vercel.app/', '_blank')}
             >
               Launch Demo
             </motion.button>
